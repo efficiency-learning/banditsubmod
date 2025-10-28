@@ -1,6 +1,18 @@
-torch
+# Core Dependencies
+torch>=2.0.0
 peft==0.7.1
 transformers==4.36.2
-datasets
+datasets>=2.14.0
 accelerate==0.28.0
-wandb
+
+# Optimization and Selection
+submodlib>=1.0
+numpy>=1.19.0
+scipy>=1.5.0
+
+# Logging and Monitoring
+wandb>=0.15.0
+tqdm>=4.24.0
+
+# Utilities
+scikit-learn>=0.24.0

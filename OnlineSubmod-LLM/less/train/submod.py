@@ -7,6 +7,23 @@ import time
 import numpy as np
 import submodlib
 from submodlib_cpp import ConcaveOverModular 
+
+"""
+Online Submodular Bandit Data Selection Module
+
+This module implements online data selection using multi-armed bandits combined with
+submodular optimization. It provides functions for:
+- Submodular function maximization (Facility Location, Graph Cut, Log Determinant)
+- Epsilon-greedy bandit selection
+- Importance sampling for stable subset selection
+- Gradient-based data selection utilities
+
+Key Components:
+    - Submodular Functions: Maximize diverse and representative subset selection
+    - Multi-Armed Bandits: Adaptively choose best selection strategy
+    - Importance Sampling: Mix current and previous selections for stability
+"""
+
 device = "cuda"
 seed = 42
 
@@ -52,6 +69,36 @@ def uniform_mixing(l1, l2, lamb, args):
 
 def importance_sampling_batched(submod_idxs, prev_opt_idxs, best_arm, args = None,
                                 image_grads=None, step_normed=None):
+    """
+    Perform importance sampling by mixing current and previous selections.
+    
+    This function combines the current optimal selection with previous selections
+    to maintain stability in the training process. Different sampling modes provide
+    different mixing strategies.
+    
+    Args:
+        submod_idxs: List of index lists, one per arm (submodular function)
+        prev_opt_idxs: Previously selected indices for importance sampling
+        best_arm: Index of the best performing arm
+        args: Dictionary containing sampling configuration:
+            - sampling_mode: Type of mixing ('uniform', 'uniform_arm', 'gradient_norm', etc.)
+            - lamb_imp: Mixing parameter (0-1), higher values favor current selection
+            - lamb: Default mixing parameter
+            - lamb_mode: Scheduling mode for lambda
+            - slow_mixing: Whether to use slower mixing implementation
+        image_grads: Optional gradients for gradient-norm based sampling
+        step_normed: Normalized training step for lambda scheduling
+        
+    Returns:
+        List of selected indices after importance sampling
+        
+    Example:
+        >>> submod_idxs = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        >>> prev_idxs = [10, 11, 12]
+        >>> best_arm = 1
+        >>> args = {"sampling_mode": "uniform", "lamb_imp": 0.7}
+        >>> new_idxs = importance_sampling_batched(submod_idxs, prev_idxs, best_arm, args)
+    """
     sampling_mode = args["sampling_mode"]
     
     lamb = args["lamb_imp"]
@@ -158,6 +205,63 @@ def eps_greedy_composition(scores, interaction_matrix, submod_sijs, query_sijs, 
                                    args,  optimizer="NaiveGreedy", 
                                    lr=None,
                                    logs=None, step_normed=None, **kwargs):
+    """
+    Epsilon-greedy bandit algorithm for submodular function composition.
+    
+    This is the main function that implements the epsilon-greedy multi-armed bandit
+    for online data selection. It explores different submodular functions and exploits
+    the best performing one based on validation performance.
+    
+    Args:
+        scores: Array of per-sample importance scores (e.g., gradient norms)
+        interaction_matrix: Pairwise similarity/interaction matrix between samples
+        submod_sijs: Data-data similarity matrix for submodular functions
+        query_sijs: Query-data similarity matrix (validation-train similarity)
+        query_query_sijs: Query-query similarity matrix (validation-validation)
+        step: Current training step
+        submod_budget: Number of samples to select
+        args: Configuration dictionary containing:
+            - greedy_only: If True, always use greedy selection (no exploration)
+            - uniform_only: If True, always use uniform selection
+            - lamb: Mixing parameter for importance sampling
+            - lamb_mode: Scheduling mode for lambda ('exp1', 'exp2', or None)
+            - pi: Exponent for epsilon threshold calculation
+            - total_steps: Total number of training steps
+            - imp_thresh_frac: Fraction for importance threshold scaling
+            - extra_arm: Whether to include an extra GREATS-style arm
+        optimizer: Submodular optimizer ('NaiveGreedy', 'LazyGreedy', 'StochasticGreedy')
+        lr: Learning rate (optional, for future extensions)
+        logs: Dictionary for logging metrics
+        step_normed: Normalized step value (0-1)
+        **kwargs: Additional keyword arguments
+        
+    Returns:
+        Tuple of (selection_type, greedy_lists, best_arm_index) where:
+            - selection_type: Either "greedy" (exploitation) or "uniform" (exploration)
+            - greedy_lists: List of selected indices for each arm
+            - best_arm_index: Index of the selected arm
+            
+    Example:
+        >>> scores = np.random.randn(1000)
+        >>> interaction_matrix = np.eye(1000)
+        >>> sijs = np.random.rand(1000, 1000)
+        >>> qsijs = np.random.rand(10, 1000)
+        >>> qq_sijs = np.random.rand(10, 10)
+        >>> args = {
+        ...     "greedy_only": False,
+        ...     "uniform_only": False,
+        ...     "lamb": 0.3,
+        ...     "lamb_mode": None,
+        ...     "pi": 0.5,
+        ...     "total_steps": 100,
+        ...     "imp_thresh_frac": 0.6,
+        ...     "extra_arm": False
+        ... }
+        >>> selection_type, lists, best_arm = eps_greedy_composition(
+        ...     scores, interaction_matrix, sijs, qsijs, qq_sijs,
+        ...     step=10, submod_budget=100, args=args
+        ... )
+    """
     n = len(scores)
     sijs = submod_sijs
     qsijs = query_sijs
