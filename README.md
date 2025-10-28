@@ -33,14 +33,6 @@ This repository contains the implementation of a novel bandit-guided submodular 
 - **Unified Framework**: Works seamlessly across both computer vision and natural language processing tasks
 - **Significant Speedups**: Achieves 2-5x training speedup with minimal accuracy loss across various benchmarks
 
-### Performance Highlights
-
-| Task | Dataset | Speedup | Accuracy |
-|------|---------|---------|----------|
-| Image Classification | CIFAR-10 | 3.2x | 94.1% |
-| Image Classification | CIFAR-100 | 2.8x | 72.5% |
-| Language Modeling | MMLU | 2.5x | 61.3% |
-| NLP | SST-2 | 3.5x | 92.8% |
 
 ## ✨ Key Features
 
