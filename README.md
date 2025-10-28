@@ -208,7 +208,7 @@ bash run.sh
 Key configuration parameters for data selection:
 
 - **Selection Strategy**: `OnlineSubmod`, `OnlineSubmodPB` (Per-Batch), `Random`, `CRAIG`, `GradMatch`, `GLISTER`
-- **Submodular Function**: `facilityLocation`, `graphCut`, `logDeterminant`, `concaveOverModular`
+- **Submodular Function**: `facilityLocation`, `graphCut`, `logDeterminant`, `disparity-min`, `disparity-sum`
 - **Selection Fraction**: Proportion of data to select (e.g., 0.3 for 30%)
 - **Selection Frequency**: How often to perform selection (e.g., every epoch)
 - **Bandit Parameters**: 
@@ -218,28 +218,7 @@ Key configuration parameters for data selection:
 
 See `configs/README.md` for detailed configuration documentation.
 
-## 📊 Results
-
-### Vision Task Performance
-
-| Dataset | Method | Fraction | Test Acc | Speedup |
-|---------|--------|----------|----------|---------|
-| CIFAR-10 | Full | 100% | 94.5% | 1.0x |
-| CIFAR-10 | Random | 30% | 91.2% | 3.3x |
-| CIFAR-10 | **OnlineSubmod** | 30% | **93.8%** | **3.2x** |
-| CIFAR-100 | Full | 100% | 73.1% | 1.0x |
-| CIFAR-100 | Random | 30% | 68.5% | 3.3x |
-| CIFAR-100 | **OnlineSubmod** | 30% | **72.1%** | **2.9x** |
-
-### LLM Fine-tuning Performance
-
-| Task | Method | Fraction | Accuracy | Training Time |
-|------|--------|----------|----------|---------------|
-| MMLU | Full | 100% | 62.1% | 10h |
-| MMLU | Random | 5% | 55.3% | 0.5h |
-| MMLU | **OnlineSubmod** | 5% | **60.8%** | **0.6h** |
-
-## 📝 Citation
+## Citation
 
 If you find this work useful, please cite our NeurIPS 2025 paper:
 
@@ -252,27 +231,7 @@ If you find this work useful, please cite our NeurIPS 2025 paper:
 }
 ```
 
-### Related Work
-
-This work builds upon and extends several key papers in data subset selection:
-
-```bibtex
-@article{killamsetty2021gradmatch,
-  title={GRAD-MATCH: Gradient Matching based Data Subset Selection for Efficient Deep Model Training},
-  author={Killamsetty, Krishnateja and Sivasubramanian, Durga and Ramakrishnan, Ganesh and De, Abir and Iyer, Rishabh},
-  journal={arXiv preprint arXiv:2103.00123},
-  year={2021}
-}
-
-@article{killamsetty2021glister,
-  title={GLISTER: Generalization based Data Subset Selection for Efficient and Robust Learning},
-  author={Killamsetty, Krishnateja and Sivasubramanian, Durga and Ramakrishnan, Ganesh and Iyer, Rishabh},
-  journal={arXiv preprint arXiv:2012.10630},
-  year={2021}
-}
-```
-
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
@@ -303,7 +262,7 @@ pip install -e OnlineSubmod-LLM/
 - Submodular optimization using [submodlib](https://github.com/decile-team/submodlib)
 - Thanks to the NeurIPS 2025 reviewers for their valuable feedback
 
-## 📧 Contact
+## Contact
 
 For questions or issues, please:
 - Open an issue on GitHub
