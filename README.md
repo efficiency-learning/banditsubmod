@@ -34,7 +34,7 @@ This repository contains the implementation of a novel bandit-guided submodular 
 - **Significant Speedups**: Achieves 2-5x training speedup with minimal accuracy loss across various benchmarks
 
 
-## ✨ Key Features
+## Key Features
 
 - **Multi-Armed Bandit Selection**: Epsilon-greedy and UCB-based selection strategies
 - **Multiple Submodular Functions**: Support for Facility Location, Graph Cut, Concave Over Modular, and Log Determinant
@@ -77,7 +77,7 @@ cd OnlineSubmod-LLM
 pip install -r requirements.txt
 ```
 
-## 🏃 Quick Start
+## Quick Start
 
 > **📖 Detailed Guide**: See [QUICKSTART.md](QUICKSTART.md) for a complete 5-minute tutorial!
 
@@ -113,7 +113,7 @@ bash example_mmlu.sh
 - **Vision**: 3x speedup, ~93.8% accuracy on CIFAR-10 (vs 94.5% full data)
 - **LLM**: 2.5x speedup, ~60.8% accuracy on MMLU (vs 62.1% full data)
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 banditsubmod/
@@ -144,7 +144,7 @@ banditsubmod/
 └── CONTRIBUTING.md              # Contribution guidelines
 ```
 
-## 🧪 Experiments
+## Experiments
 
 ### Vision Experiments
 
