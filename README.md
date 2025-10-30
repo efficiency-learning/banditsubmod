@@ -26,24 +26,6 @@ Official implementation of **"Bandit-Guided Submodular Curriculum for Adaptive S
 
 This repository contains the implementation of a novel bandit-guided submodular curriculum learning framework for adaptive data subset selection during training of deep learning models. Our method combines **multi-armed bandits** with **submodular optimization** to create an adaptive curriculum that selects informative data subsets throughout training, significantly reducing computational costs while maintaining or improving model performance.
 
-### Key Contributions
-
-- **Bandit-Guided Curriculum**: A principled approach to adaptively select data subsets during training using multi-armed bandits with submodular rewards
-- **Adaptive Subset Selection**: Leverages various submodular functions (Facility Location, Graph Cut, Log Determinant) for diverse and representative subset selection that evolves with training
-- **Unified Framework**: Works seamlessly across both computer vision and natural language processing tasks
-- **Significant Speedups**: Achieves 2-5x training speedup with minimal accuracy loss across various benchmarks
-
-
-## Key Features
-
-- **Multi-Armed Bandit Selection**: Epsilon-greedy and UCB-based selection strategies
-- **Multiple Submodular Functions**: Support for Facility Location, Graph Cut, Concave Over Modular, and Log Determinant
-- **Gradient-based Selection**: Efficient gradient computation using Ghost Batch Normalization
-- **Vision Tasks**: Support for CIFAR-10/100, MNIST, TinyImageNet, and more
-- **LLM Fine-tuning**: Integration with Hugging Face Transformers for LLaMA-2 and other LLMs
-- **LoRA Support**: Efficient parameter-efficient fine-tuning for large language models
-- **Flexible Configuration**: Easy-to-use configuration system for experiments
-
 ##  Installation
 
 ### Prerequisites
