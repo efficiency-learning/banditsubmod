@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Bandit-Guided Submodular Curriculum for Adaptive Subset Selection">
+  <meta name="keywords" content="Bandit-Guided Submodular Curriculum, OnlineSubmod, NeurIPS 2025, Adaptive Subset Selection, Multi-Armed Bandits, Submodular Optimization">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bandit-Guided Submodular Curriculum for Adaptive Subset Selection</title>
+
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+  -->
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+
+      <!-- The loading of KaTeX is deferred to speed up page rendering -->
+      <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js" integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O" crossorigin="anonymous"></script>
+  
+      <!-- To automatically render math in text elements, include the auto-render extension: -->
+      <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js" integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF" crossorigin="anonymous"
+          onload="renderMathInElement(document.body);"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://prateekiiest.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Bandit-Guided Submodular Curriculum for Adaptive Subset Selection</h1>
+          <h4 class="title is-2 conference-title"><b>NeurIPS 2025  <a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/117454">Conference Site</a></b></h4>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://prateekiiest.github.io/">Prateek Chanda</a>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/prayas-agrawal-aa4984120/">Prayas Agrawal</a>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/saralsureka/">Saral Sureka</a>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/pls-lokesh-reddy-4a229a225/">Lokesh Reddy Polu</a>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/atharv-kshirsagar-3230b0253/">Atharv Kshirsagar</a>,</span>
+            <span class="author-block">
+              <a href="https://www.cse.iitb.ac.in/~ganesh/">Ganesh Ramakrishnan</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Department of Computer Science, IIT Bombay</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://openreview.net/pdf?id=Y1UVWWWGKB"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://openreview.net/forum?id=Y1UVWWWGKB"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>OpenReview</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/117454"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-image"></i>
+                  </span>
+                  <span>Poster</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/117454"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-chalkboard"></i>
+                  </span>
+                  <span>Slides</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/efficiency-learning/banditsubmod/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Abstract
+      </h2>
+      Traditional curriculum learning proceeds from easy to hard samples, yet defining a reliable notion of difficulty remains elusive. Prior work has used submodular functions to induce difficulty scores in curriculum learning. We reinterpret adaptive subset selection and formulate it as a multi-armed bandit problem, where each arm corresponds to a submodular function guiding sample selection. We introduce OnlineSubmod, a novel online greedy policy that optimizes a utility-driven reward and provably achieves no-regret performance under various sampling regimes. Empirically, OnlineSubmod outperforms both traditional curriculum learning and bi-level optimization approaches across vision and language datasets, showing superior accuracy-efficiency tradeoffs. More broadly, we show that validation-driven reward metrics offer a principled way to guide the curriculum schedule. Our code is publicly available at GitHub : <a href="https://github.com/efficiency-learning/banditsubmod/">https://github.com/efficiency-learning/banditsubmod/</a>.
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{chanda2025bandit,
+  title={Bandit-Guided Submodular Curriculum for Adaptive Subset Selection},
+  author={Chanda, Prateek and Agrawal, Prayas and Sureka, Saral and Polu, Lokesh Reddy and Kshirsagar, Atharv and Ramakrishnan, Ganesh},
+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://openreview.net/pdf?id=Y1UVWWWGKB">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
