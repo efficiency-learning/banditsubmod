@@ -1,11 +1,11 @@
-# Bandit-Guided Submodular Curriculum for Adaptive Subset Selection
+# Bandit Guided Submodular Curriculum for Adaptive Subset Selection
 
 [![NeurIPS 2025](https://img.shields.io/badge/NeurIPS-2025-blue.svg)](https://neurips.cc/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 
-Official implementation of **"Bandit-Guided Submodular Curriculum for Adaptive Subset Selection"** accepted at **NeurIPS 2025**.
+Official implementation of **"Bandit Guided Submodular Curriculum for Adaptive Subset Selection"** accepted at **NeurIPS 2025**.
 
 **Authors:** Prateek Chanda, Prayas Agrawal, Saral Sureka, Lokesh Reddy Polu, Atharv Kshirsagar, Ganesh Ramakrishnan
 
@@ -194,7 +194,7 @@ If you find this work useful, please cite our NeurIPS 2025 paper:
 
 ```bibtex
 @inproceedings{chanda2025bandit,
-  title={Bandit-Guided Submodular Curriculum for Adaptive Subset Selection},
+  title={Bandit Guided Submodular Curriculum for Adaptive Subset Selection},
   author={Chanda, Prateek and Agrawal, Prayas and Sureka, Saral and Polu, Lokesh Reddy and Kshirsagar, Atharv and Ramakrishnan, Ganesh},
   booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
   year={2025}
