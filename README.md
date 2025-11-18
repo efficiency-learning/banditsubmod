@@ -91,10 +91,6 @@ huggingface-cli login
 bash example_mmlu.sh
 ```
 
-**What you'll get:**
-- **Vision**: 3x speedup, ~93.8% accuracy on CIFAR-10 (vs 94.5% full data)
-- **LLM**: 2.5x speedup, ~60.8% accuracy on MMLU (vs 62.1% full data)
-
 ## Repository Structure
 
 ```
